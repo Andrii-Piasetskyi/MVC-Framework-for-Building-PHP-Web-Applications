@@ -4,24 +4,18 @@ $request = trim($_SERVER['REQUEST_URI'], "/");
 
 require '../vendor/core/Router.php';
 require '../vendor/libs/debugFunctions.php';
+require '../app/controllers/Main.php';
+require '../app/controllers/Posts.php';
 
-Router::add('posts/add', ['controller'=>'Posts', 'action'=>'add']);
-Router::add('posts', ['controller'=>'Posts', 'action'=>'index']);
-Router::add('', ['controller'=>'Main', 'action'=>'index']);
+
+
+Router::add('^$', ['controller'=>'Main', 'action'=>'index']);
+Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 
 
 debug(Router::getRoutes());
 
-if(Router::matchRoute($request))
-{
-    debug(Router::getRoute());
-}
-else
-{
-    echo '404';
-}
-
-echo "<br>".$request."</br>";
+Router::dispatch($request);
 
 
 
