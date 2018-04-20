@@ -1,13 +1,13 @@
 <?php
 
-$request = $_SERVER['REQUEST_URI'];
+$request = trim($_SERVER['REQUEST_URI'], "/");
 
 require '../vendor/core/Router.php';
 require '../vendor/libs/debugFunctions.php';
 
-Router::add('/posts/add', ['controller'=>'Posts', 'action'=>'add']);
-Router::add('/posts/', ['controller'=>'Posts', 'action'=>'index']);
-Router::add('/', ['controller'=>'Main', 'action'=>'index']);
+Router::add('posts/add', ['controller'=>'Posts', 'action'=>'add']);
+Router::add('posts', ['controller'=>'Posts', 'action'=>'index']);
+Router::add('', ['controller'=>'Main', 'action'=>'index']);
 
 
 debug(Router::getRoutes());
@@ -21,4 +21,7 @@ else
     echo '404';
 }
 
-echo $request;
+echo "<br>".$request."</br>";
+
+
+

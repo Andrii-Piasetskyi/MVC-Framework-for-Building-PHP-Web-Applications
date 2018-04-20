@@ -21,14 +21,12 @@
      
      public static function matchRoute($url)
      {
-         foreach (self::$routes as $pattern => $route)
-         {
-             if($url == $pattern)
-             {
+         foreach (self::$routes as $pattern => $route) {
+             if($pattern == $url) {
                  self::$route = $route;
                  return true;
              }
-             return false;
          }
+         return false;
      }
 }
